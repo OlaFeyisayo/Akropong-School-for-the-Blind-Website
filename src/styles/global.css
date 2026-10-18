@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Akropong School for the Blind — Design system
+   Built for accessibility: strong contrast, large readable text,
+   visible focus, reduced-motion support, and an on-page a11y toolbar.
+   ========================================================================== */
+
+:root {
+  /* Brand palette — warm, hopeful, high-contrast */
+  --brand: #0f766e;         /* teal-green */
+  --brand-dark: #0b5048;    /* darker teal for text/links on light bg */
+  --brand-darker: #083a34;
+  --accent: #f59e0b;        /* warm gold — donate / primary action */
+  --accent-dark: #b45309;
+
+  --ink: #10241f;           /* near-black green, main text */
+  --ink-soft: #3f524d;      /* secondary text */
+  --muted: #5d6f6a;
+
+  --bg: #fbfaf5;            /* warm cream page background */
+  --surface: #ffffff;
+  --surface-2: #f2f4f1;
+  --border: #d9e0dc;
+
+  --ring: #1d4ed8;          /* focus ring — distinct from brand */
+  --success: #15803d;
+
+  /* Typography */
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-size-base: 1.125rem;   /* 18px — generous base for readability */
+  --leading: 1.65;
+
+  /* Layout */
+  --maxw: 1140px;
+  --radius: 14px;
+  --radius-lg: 24px;
+  --shadow: 0 4px 20px rgba(16, 36, 31, 0.08);
+  --shadow-lg: 0 14px 40px rgba(16, 36, 31, 0.14);
+  --space: clamp(1rem, 3vw, 2rem);
+}
+
+/* Dark mode (respects system preference) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --brand: #2dd4bf;
+    --brand-dark: #5eead4;
+    --brand-darker: #99f6e4;
+    --accent: #fbbf24;
+    --accent-dark: #f59e0b;
+    --ink: #eef5f2;
+    --ink-soft: #c4d2cd;
+    --muted: #9fb0ab;
+    --bg: #0c1613;
+    --surface: #132220;
+    --surface-2: #1b2d29;
+    --border: #2b3e39;
+    --ring: #93c5fd;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme="dark"] {
+  --brand: #2dd4bf;
+  --brand-dark: #5eead4;
+  --brand-darker: #99f6e4;
+  --accent: #fbbf24;
+  --accent-dark: #f59e0b;
+  --ink: #eef5f2;
+  --ink-soft: #c4d2cd;
+  --muted: #9fb0ab;
+  --bg: #0c1613;
+  --surface: #132220;
+  --surface-2: #1b2d29;
+  --border: #2b3e39;
+  --ring: #93c5fd;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* High-contrast mode — toggled by the accessibility toolbar */
+:root[data-contrast="high"] {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --ink: #000000;
+  --ink-soft: #000000;
+  --muted: #1a1a1a;
+  --brand: #004d44;
+  --brand-dark: #003a33;
+  --brand-darker: #002621;
+  --accent: #a85a00;
+  --accent-dark: #7a4000;
+  --border: #000000;
+  --shadow: none;
+  --shadow-lg: none;
+}
+:root[data-contrast="high"] * {
+  text-shadow: none !important;
+}
+
+/* Font-size scaling — toggled by the toolbar (applied to <html>) */
+:root[data-textsize="large"] { font-size: 112.5%; }
+:root[data-textsize="xlarge"] { font-size: 125%; }
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+* { margin: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--leading);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img, picture, svg, video { display: block; max-width: 100%; height: auto; }
+
+h1, h2, h3, h4 {
+  line-height: 1.15;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+h3 { font-size: clamp(1.25rem, 2.5vw, 1.55rem); }
+
+p { max-width: 68ch; }
+
+a { color: var(--brand-dark); text-underline-offset: 3px; }
+a:hover { color: var(--accent-dark); }
+
+ul, ol { padding-left: 1.3em; }
+
+/* ---------- Accessibility essentials ---------- */
+
+/* Visible, strong focus for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: -100px;
+  z-index: 1000;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.75rem 1.1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 0.75rem; color: #fff; }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+.section { padding-block: clamp(3rem, 7vw, 5.5rem); }
+.section-tight { padding-block: clamp(2rem, 5vw, 3.5rem); }
+
+.stack > * + * { margin-top: 1rem; }
+.lead { font-size: 1.2rem; color: var(--ink-soft); }
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--brand-dark);
+}
+.center { text-align: center; }
+.muted { color: var(--muted); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary { background: var(--brand); color: #fff; }
+.btn-primary:hover { background: var(--brand-dark); color: #fff; }
+
+.btn-accent { background: var(--accent); color: #241400; box-shadow: var(--shadow); }
+.btn-accent:hover { background: var(--accent-dark); color: #fff; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--brand-dark);
+  border-color: var(--brand);
+}
+.btn-outline:hover { background: var(--brand); color: #fff; }
+
+.btn-ghost { background: var(--surface-2); color: var(--ink); }
+.btn-ghost:hover { background: var(--border); color: var(--ink); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; flex: 1; }
+.card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+.grid { display: grid; gap: 1.5rem; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+/* ---------- Badges / pills ---------- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface-2);
+  color: var(--brand-dark);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* ---------- Prose (article bodies rendered from Markdown) ---------- */
+.prose { color: var(--ink); }
+.prose > * + * { margin-top: 1.1rem; }
+.prose h2 { margin-top: 2rem; }
+.prose h3 { margin-top: 1.5rem; }
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li + li { margin-top: 0.4rem; }
+.prose a { font-weight: 600; }
+.prose img { border-radius: var(--radius); margin-block: 1.5rem; }
+.prose blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}

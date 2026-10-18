@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { useTranslations, localizedPath, loc, formatDate, toLang, type Lang } from '../../i18n/utils';
+import { getAllNews } from '../../lib/news';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}
+const lang: Lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+const news = getAllNews();
+---
+
+<BaseLayout lang={lang} title={t('news.title')}>
+  <PageHeader title={t('news.title')} />
+
+  <section class="section">
+    <div class="container">
+      {news.length > 0 ? (
+        <div class="grid grid-3">
+          {news.map((n) => (
+            <article class="card">
+              {n.data.image && <img src={n.data.image} alt={loc(n.data, 'imageAlt', lang)} width="400" height="250" />}
+              <div class="card-body">
+                <p class="pill">{formatDate(n.data.date, lang)}</p>
+                <h2 class="news-title"><a href={localizedPath(lang, `news/${n.slug}`)}>{loc(n.data, 'title', lang)}</a></h2>
+                <p>{loc(n.data, 'summary', lang)}</p>
+                <p style="margin-top:auto;"><a href={localizedPath(lang, `news/${n.slug}`)} class="link-arrow">{t('btn.readMore')} <Icon name="arrow" size={16} /></a></p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="muted">{t('news.empty')}</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .news-title { font-size: 1.3rem; }
+  .news-title a { text-decoration: none; color: var(--ink); }
+  .news-title a:hover { color: var(--brand-dark); text-decoration: underline; }
+  .link-arrow { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; text-decoration: none; }
+  .link-arrow:hover { text-decoration: underline; }
+</style>

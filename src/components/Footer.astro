@@ -1,0 +1,115 @@
+---
+import { useTranslations, localizedPath, loc, type Lang } from '../i18n/utils';
+import settings from '../data/settings.json';
+import Icon from './Icon.astro';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+
+const links = [
+  { href: localizedPath(lang, 'about'), key: 'nav.about' as const },
+  { href: localizedPath(lang, 'programs'), key: 'nav.programs' as const },
+  { href: localizedPath(lang, 'news'), key: 'nav.news' as const },
+  { href: localizedPath(lang, 'donate'), key: 'nav.donate' as const },
+  { href: localizedPath(lang, 'contact'), key: 'nav.contact' as const },
+];
+
+const socials = [
+  { url: settings.facebook, label: 'Facebook' },
+  { url: settings.instagram, label: 'Instagram' },
+  { url: settings.youtube, label: 'YouTube' },
+  { url: settings.x, label: 'X' },
+  { url: settings.linkedin, label: 'LinkedIn' },
+].filter((s) => s.url);
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-brand">{settings.orgName}</p>
+      <p class="footer-tag">{t('footer.builtWith')}</p>
+      {socials.length > 0 && (
+        <ul class="socials" aria-label={t('contact.follow')}>
+          {socials.map((s) => (
+            <li>
+              <a href={s.url} class="social" rel="noopener noreferrer" target="_blank">
+                {s.label}
+                <span class="sr-only"> ({lang === 'fr' ? 'nouvel onglet' : 'opens in a new tab'})</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    <nav class="footer-links" aria-label={t('footer.quickLinks')}>
+      <h2>{t('footer.quickLinks')}</h2>
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{t(l.key)}</a></li>)}
+      </ul>
+    </nav>
+
+    <div class="footer-contact">
+      <h2>{t('contact.reach')}</h2>
+      <ul>
+        {settings.email && (
+          <li><Icon name="mail" size={18} /> <a href={`mailto:${settings.email}`}>{settings.email}</a></li>
+        )}
+        {settings.phone && (
+          <li><Icon name="phone" size={18} /> <a href={`tel:${settings.phone.replace(/\s+/g, '')}`}>{settings.phone}</a></li>
+        )}
+        {loc(settings, 'address', lang) && (
+          <li><Icon name="pin" size={18} /> <span>{loc(settings, 'address', lang)}</span></li>
+        )}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© {year} {settings.orgName}. {t('footer.rights')}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--brand-darker); color: #eafaf6; margin-top: auto; }
+  :global([data-contrast="high"]) .site-footer { background: #000; color: #fff; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.2fr;
+    gap: 2rem;
+    padding-block: clamp(2.5rem, 5vw, 3.5rem);
+  }
+  .site-footer h2 { font-size: 1.05rem; color: #fff; margin-bottom: 0.9rem; }
+  .footer-brand { font-weight: 800; font-size: 1.2rem; color: #fff; }
+  .footer-tag { color: #bfe9e0; margin-top: 0.4rem; max-width: 34ch; }
+  :global([data-contrast="high"]) .footer-tag { color: #fff; }
+
+  .site-footer a { color: #d6f5ee; text-decoration: none; }
+  .site-footer a:hover { color: #fff; text-decoration: underline; }
+  :global([data-contrast="high"]) .site-footer a { color: #fff; text-decoration: underline; }
+
+  .footer-links ul, .footer-contact ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .footer-contact li { display: flex; align-items: center; gap: 0.5rem; }
+  .footer-contact :global(svg) { color: var(--accent); flex-shrink: 0; }
+
+  .socials { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .social {
+    display: inline-flex; align-items: center;
+    min-height: 40px; padding: 0.3rem 0.85rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px; font-weight: 700;
+  }
+  .social:hover { background: rgba(255, 255, 255, 0.2); text-decoration: none; }
+
+  .footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 0.9rem; }
+  .footer-bottom p { padding-block: 1.1rem; color: #bfe9e0; max-width: none; }
+  :global([data-contrast="high"]) .footer-bottom p { color: #fff; }
+
+  @media (max-width: 760px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>

@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Markdown from '../../components/Markdown.astro';
+import Icon from '../../components/Icon.astro';
+import { useTranslations, loc, toLang, type Lang } from '../../i18n/utils';
+import about from '../../data/pages/about.json';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}
+const lang: Lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+---
+
+<BaseLayout lang={lang} title={loc(about, 'title', lang)}>
+  <PageHeader title={loc(about, 'title', lang)} intro={loc(about, 'intro', lang)} />
+
+  <section class="section">
+    <div class="container about-grid">
+      <div>
+        <h2>{loc(about, 'storyTitle', lang)}</h2>
+        <Markdown text={loc(about, 'storyBody', lang)} />
+      </div>
+      <aside class="about-aside stack">
+        {about.heroImage
+          ? <img src={about.heroImage} alt={loc(about, 'heroImageAlt', lang)} class="about-img" width="520" height="400" />
+          : <div class="about-placeholder" aria-hidden="true"><Icon name="book" size={56} /></div>}
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container grid grid-2">
+      <article class="card mv">
+        <div class="card-body">
+          <h2>{loc(about, 'missionTitle', lang)}</h2>
+          <p>{loc(about, 'missionBody', lang)}</p>
+        </div>
+      </article>
+      <article class="card mv">
+        <div class="card-body">
+          <h2>{loc(about, 'visionTitle', lang)}</h2>
+          <p>{loc(about, 'visionBody', lang)}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  {about.values?.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <h2 class="center">{lang === 'fr' ? 'Nos valeurs' : 'Our values'}</h2>
+        <div class="grid grid-2" style="margin-top: 2rem;">
+          {about.values.map((v) => (
+            <div class="value">
+              <h3>{loc(v, 'title', lang)}</h3>
+              <p>{loc(v, 'text', lang)}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .about-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+  .about-img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow); object-fit: cover; }
+  .about-placeholder { display: grid; place-items: center; aspect-ratio: 4/3; border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--brand) 0%, var(--brand-darker) 100%); color: rgba(255,255,255,0.9); }
+  .mv h2 { color: var(--brand-dark); }
+  .value { border-left: 4px solid var(--accent); padding: 0.2rem 0 0.2rem 1.1rem; }
+  .value h3 { color: var(--brand-dark); }
+  @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } .about-aside { order: -1; } }
+</style>

@@ -1,0 +1,19 @@
+---
+interface Props { title: string; intro?: string; }
+const { title, intro } = Astro.props;
+---
+<section class="page-header">
+  <div class="container stack">
+    <h1>{title}</h1>
+    {intro && <p class="lead">{intro}</p>}
+  </div>
+</section>
+
+<style>
+  .page-header {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  .page-header .stack { max-width: 56rem; }
+</style>

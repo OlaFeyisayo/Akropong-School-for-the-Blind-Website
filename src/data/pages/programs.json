@@ -1,0 +1,51 @@
+{
+  "title_en": "Our programs",
+  "title_fr": "Nos programmes",
+  "intro_en": "From early Braille literacy to practical skills for adulthood, our programs are designed to help every student thrive.",
+  "intro_fr": "De l'apprentissage précoce du braille aux compétences pratiques pour la vie adulte, nos programmes sont conçus pour aider chaque élève à s'épanouir.",
+
+  "programs": [
+    {
+      "icon": "book",
+      "title_en": "Braille literacy & core education",
+      "title_fr": "Braille & enseignement fondamental",
+      "text_en": "Students learn to read and write in Braille and study the national curriculum — language, mathematics, science and social studies — with specially trained teachers and adapted materials.",
+      "text_fr": "Les élèves apprennent à lire et écrire en braille et suivent le programme national — langue, mathématiques, sciences et sciences sociales — avec des enseignants formés et du matériel adapté."
+    },
+    {
+      "icon": "music",
+      "title_en": "Music & the arts",
+      "title_fr": "Musique & arts",
+      "text_en": "Music is a source of joy and confidence. Students explore singing, instruments and performance, discovering talents that can last a lifetime.",
+      "text_fr": "La musique est une source de joie et de confiance. Les élèves découvrent le chant, les instruments et la scène, révélant des talents qui durent toute une vie."
+    },
+    {
+      "icon": "tools",
+      "title_en": "Vocational & life skills",
+      "title_fr": "Compétences professionnelles & de vie",
+      "text_en": "Practical training in crafts, orientation and mobility, and daily living skills prepares students for independence and work.",
+      "text_fr": "Une formation pratique en artisanat, en orientation et mobilité, et en autonomie quotidienne prépare les élèves à l'indépendance et à l'emploi."
+    },
+    {
+      "icon": "heart",
+      "title_en": "Boarding & pastoral care",
+      "title_fr": "Internat & accompagnement",
+      "text_en": "A safe, welcoming boarding home with meals, health care and houseparents who support each child's wellbeing day and night.",
+      "text_fr": "Un internat sûr et accueillant avec repas, soins de santé et éducateurs qui veillent au bien-être de chaque enfant, jour et nuit."
+    },
+    {
+      "icon": "sports",
+      "title_en": "Sports & recreation",
+      "title_fr": "Sport & loisirs",
+      "text_en": "Adapted sports and play build strength, teamwork and friendship — because every childhood deserves fun.",
+      "text_fr": "Des sports adaptés et des jeux développent la force, l'esprit d'équipe et l'amitié — car chaque enfance mérite de s'amuser."
+    },
+    {
+      "icon": "tech",
+      "title_en": "Assistive technology",
+      "title_fr": "Technologies d'assistance",
+      "text_en": "Screen readers and accessible devices help students connect with the digital world and expand what is possible.",
+      "text_fr": "Lecteurs d'écran et appareils accessibles aident les élèves à se connecter au monde numérique et à élargir leurs horizons."
+    }
+  ]
+}

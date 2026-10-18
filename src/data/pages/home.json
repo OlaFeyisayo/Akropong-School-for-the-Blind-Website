@@ -1,0 +1,56 @@
+{
+  "heroTitle_en": "Every child deserves the light of learning",
+  "heroTitle_fr": "Chaque enfant mérite la lumière du savoir",
+  "heroSubtitle_en": "At Akropong School for the Blind, blind and visually impaired children in Ghana learn to read, dream and lead — with Braille, care and opportunity.",
+  "heroSubtitle_fr": "À l'École Akropong pour les Aveugles, les enfants aveugles et malvoyants du Ghana apprennent à lire, à rêver et à s'épanouir — grâce au braille, à l'attention et aux opportunités.",
+  "heroImage": "",
+  "heroImageAlt_en": "Students learning together at Akropong School for the Blind",
+  "heroImageAlt_fr": "Des élèves apprenant ensemble à l'École Akropong pour les Aveugles",
+
+  "stats": [
+    { "value": "1945", "label_en": "Serving children since", "label_fr": "Au service des enfants depuis" },
+    { "value": "200+", "label_en": "Students supported", "label_fr": "Élèves accompagnés" },
+    { "value": "100%", "label_en": "Committed to inclusion", "label_fr": "Engagés pour l'inclusion" }
+  ],
+
+  "introEyebrow_en": "Who we are",
+  "introEyebrow_fr": "Qui sommes-nous",
+  "introTitle_en": "A safe place to learn, grow and belong",
+  "introTitle_fr": "Un lieu sûr pour apprendre, grandir et s'épanouir",
+  "introText_en": "For generations, our school has given blind and visually impaired children in Ghana a place where they are seen, supported and believed in. Through Braille literacy, caring teachers and practical skills, we help every student build a future full of possibility.",
+  "introText_fr": "Depuis des générations, notre école offre aux enfants aveugles et malvoyants du Ghana un lieu où ils sont reconnus, soutenus et encouragés. Grâce à l'alphabétisation en braille, à des enseignants attentionnés et à des compétences pratiques, nous aidons chaque élève à bâtir un avenir plein de possibilités.",
+
+  "highlightsTitle_en": "What we offer",
+  "highlightsTitle_fr": "Ce que nous offrons",
+  "highlights": [
+    {
+      "icon": "book",
+      "title_en": "Braille literacy",
+      "title_fr": "Alphabétisation en braille",
+      "text_en": "Reading and writing in Braille opens the door to every other subject and to lifelong independence.",
+      "text_fr": "Lire et écrire en braille ouvre la porte à toutes les autres matières et à une autonomie durable."
+    },
+    {
+      "icon": "heart",
+      "title_en": "Boarding & care",
+      "title_fr": "Internat & accompagnement",
+      "text_en": "A nurturing boarding environment where children are safe, healthy and encouraged every day.",
+      "text_fr": "Un internat bienveillant où les enfants sont en sécurité, en bonne santé et encouragés chaque jour."
+    },
+    {
+      "icon": "tools",
+      "title_en": "Skills for life",
+      "title_fr": "Compétences pour la vie",
+      "text_en": "Music, crafts and vocational training that build confidence and real-world abilities.",
+      "text_fr": "Musique, artisanat et formation professionnelle qui renforcent la confiance et les capacités concrètes."
+    }
+  ],
+
+  "ctaTitle_en": "Your support changes a child's life",
+  "ctaTitle_fr": "Votre soutien change la vie d'un enfant",
+  "ctaText_en": "A gift of any size helps provide Braille books, meals, learning materials and care. Stand with our students today.",
+  "ctaText_fr": "Un don, quel qu'il soit, aide à fournir des livres en braille, des repas, du matériel pédagogique et de l'attention. Soutenez nos élèves dès aujourd'hui.",
+  "ctaImage": "",
+  "ctaImageAlt_en": "A student reading Braille",
+  "ctaImageAlt_fr": "Un élève lisant en braille"
+}

@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Markdown from '../../../components/Markdown.astro';
+import Icon from '../../../components/Icon.astro';
+import { useTranslations, localizedPath, loc, formatDate, toLang, type Lang } from '../../../i18n/utils';
+import { getAllNews } from '../../../lib/news';
+
+export function getStaticPaths() {
+  const langs: Lang[] = ['en', 'fr'];
+  const news = getAllNews();
+  return langs.flatMap((lang) =>
+    news.map((n) => ({ params: { lang, slug: n.slug }, props: { entry: n } }))
+  );
+}
+
+const lang: Lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+const { entry } = Astro.props;
+const { data } = entry;
+---
+
+<BaseLayout lang={lang} title={loc(data, 'title', lang)} description={loc(data, 'summary', lang)}>
+  <article class="article">
+    <div class="container article-head stack">
+      <p><a href={localizedPath(lang, 'news')} class="link-arrow back"><Icon name="arrow" size={16} /> {t('btn.backToNews')}</a></p>
+      <p class="pill">{t('news.published')} {formatDate(data.date, lang)}</p>
+      <h1>{loc(data, 'title', lang)}</h1>
+      {loc(data, 'summary', lang) && <p class="lead">{loc(data, 'summary', lang)}</p>}
+    </div>
+
+    {data.image && (
+      <div class="container">
+        <img class="article-img" src={data.image} alt={loc(data, 'imageAlt', lang)} width="900" height="500" />
+      </div>
+    )}
+
+    <div class="container article-body">
+      <Markdown text={loc(data, 'body', lang)} />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .article { padding-block: clamp(2rem, 5vw, 3.5rem); }
+  .article-head { max-width: 46rem; }
+  .article-img { width: 100%; max-width: 900px; margin-block: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow); aspect-ratio: 16/9; object-fit: cover; }
+  .article-body { max-width: 46rem; margin-top: 1.5rem; }
+  .link-arrow { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; text-decoration: none; }
+  .link-arrow:hover { text-decoration: underline; }
+  .back :global(svg) { transform: rotate(180deg); }
+</style>

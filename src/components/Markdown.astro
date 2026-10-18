@@ -1,0 +1,10 @@
+---
+import { marked } from 'marked';
+
+interface Props { text?: string; class?: string; }
+const { text = '', class: className = 'prose' } = Astro.props;
+
+marked.setOptions({ breaks: true, gfm: true });
+const html = text ? (marked.parse(text, { async: false }) as string) : '';
+---
+<div class={className} set:html={html} />

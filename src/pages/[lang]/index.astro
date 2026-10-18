@@ -1,0 +1,163 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import { useTranslations, localizedPath, loc, formatDate, toLang, type Lang } from '../../i18n/utils';
+import { getAllNews } from '../../lib/news';
+import home from '../../data/pages/home.json';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'fr' } }];
+}
+
+const lang: Lang = toLang(Astro.params.lang);
+const t = useTranslations(lang);
+const news = getAllNews().slice(0, 3);
+---
+
+<BaseLayout lang={lang} title={t('nav.home')}>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy stack">
+        <p class="eyebrow">{loc(home, 'introEyebrow', lang) || 'Akropong School for the Blind'}</p>
+        <h1>{loc(home, 'heroTitle', lang)}</h1>
+        <p class="lead">{loc(home, 'heroSubtitle', lang)}</p>
+        <div class="hero-actions">
+          <a href={localizedPath(lang, 'donate')} class="btn btn-accent">
+            <Icon name="heart" size={20} /> {t('btn.donateNow')}
+          </a>
+          <a href={localizedPath(lang, 'about')} class="btn btn-outline">{t('btn.learnMore')}</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        {home.heroImage
+          ? <img src={home.heroImage} alt={loc(home, 'heroImageAlt', lang)} width="640" height="520" />
+          : <div class="hero-placeholder" aria-hidden="true"><Icon name="eye" size={72} /></div>}
+      </div>
+    </div>
+
+    {home.stats?.length > 0 && (
+      <div class="container">
+        <dl class="stats">
+          {home.stats.map((s) => (
+            <div class="stat">
+              <dt>{loc(s, 'label', lang)}</dt>
+              <dd>{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    )}
+  </section>
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="container intro-grid">
+      <div class="stack">
+        <p class="eyebrow">{loc(home, 'introEyebrow', lang)}</p>
+        <h2>{loc(home, 'introTitle', lang)}</h2>
+        <p class="lead">{loc(home, 'introText', lang)}</p>
+        <p><a href={localizedPath(lang, 'about')} class="link-arrow">{t('btn.learnMore')} <Icon name="arrow" size={18} /></a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="section" style="background: var(--surface-2);">
+    <div class="container">
+      <h2 class="center">{loc(home, 'highlightsTitle', lang)}</h2>
+      <div class="grid grid-3" style="margin-top: 2.5rem;">
+        {home.highlights?.map((h) => (
+          <article class="card feature">
+            <div class="card-body">
+              <span class="feature-icon" aria-hidden="true"><Icon name={h.icon} size={30} /></span>
+              <h3>{loc(h, 'title', lang)}</h3>
+              <p>{loc(h, 'text', lang)}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Donate CTA band -->
+  <section class="cta-band">
+    <div class="container cta-inner">
+      <div class="stack">
+        <h2>{loc(home, 'ctaTitle', lang)}</h2>
+        <p class="lead" style="color: #eafaf6;">{loc(home, 'ctaText', lang)}</p>
+      </div>
+      <a href={localizedPath(lang, 'donate')} class="btn btn-accent cta-btn">
+        <Icon name="gift" size={20} /> {t('btn.donateNow')}
+      </a>
+    </div>
+  </section>
+
+  <!-- Latest news -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>{t('home.latestNews')}</h2>
+        <a href={localizedPath(lang, 'news')} class="link-arrow">{t('btn.allNews')} <Icon name="arrow" size={18} /></a>
+      </div>
+      {news.length > 0 ? (
+        <div class="grid grid-3" style="margin-top: 2rem;">
+          {news.map((n) => (
+            <article class="card">
+              {n.data.image && <img src={n.data.image} alt={loc(n.data, 'imageAlt', lang)} width="400" height="250" />}
+              <div class="card-body">
+                <p class="pill">{formatDate(n.data.date, lang)}</p>
+                <h3><a href={localizedPath(lang, `news/${n.slug}`)}>{loc(n.data, 'title', lang)}</a></h3>
+                <p>{loc(n.data, 'summary', lang)}</p>
+                <p style="margin-top:auto;"><a href={localizedPath(lang, `news/${n.slug}`)} class="link-arrow">{t('btn.readMore')} <Icon name="arrow" size={16} /></a></p>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="muted" style="margin-top:1rem;">{t('home.noNews')}</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { padding-top: clamp(2rem, 5vw, 3.5rem); padding-bottom: clamp(2rem, 4vw, 3rem); background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%); }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(1.5rem, 4vw, 3rem); align-items: center; }
+  .hero-copy { max-width: 36rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+  .hero-media img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); aspect-ratio: 5/4; object-fit: cover; }
+  .hero-placeholder {
+    display: grid; place-items: center;
+    aspect-ratio: 5/4; border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-darker) 100%);
+    color: rgba(255,255,255,0.9); box-shadow: var(--shadow-lg);
+  }
+
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: clamp(2rem, 4vw, 3rem); text-align: center; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1rem; box-shadow: var(--shadow); }
+  .stat dd { font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 800; color: var(--brand-dark); }
+  .stat dt { color: var(--muted); font-weight: 600; font-size: 0.95rem; order: 2; margin-top: 0.25rem; }
+  .stat { display: flex; flex-direction: column; }
+
+  .intro-grid { max-width: 54rem; }
+  .link-arrow { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; text-decoration: none; }
+  .link-arrow:hover { text-decoration: underline; }
+
+  .feature-icon { display: inline-grid; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: var(--surface-2); color: var(--brand-dark); margin-bottom: 0.3rem; }
+  .card.feature { background: var(--surface); }
+
+  .cta-band { background: linear-gradient(135deg, var(--brand) 0%, var(--brand-darker) 100%); color: #fff; padding-block: clamp(2.5rem, 5vw, 4rem); }
+  :global([data-contrast="high"]) .cta-band { background: #000; }
+  .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .cta-inner h2 { color: #fff; }
+  .cta-btn { flex-shrink: 0; }
+
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-media { order: -1; }
+    .stats { grid-template-columns: 1fr; }
+  }
+</style>
