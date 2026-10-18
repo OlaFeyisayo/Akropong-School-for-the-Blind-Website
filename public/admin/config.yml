@@ -192,6 +192,39 @@ collections:
           - { name: note_en, label: "Note (EN)", widget: string, required: false }
           - { name: note_fr, label: "Note (FR)", widget: string, required: false }
 
+      # ---- Admissions
+      - name: admissions
+        label: "Admissions page"
+        file: "src/data/pages/admissions.json"
+        fields:
+          - { name: title_en, label: "Title (EN)", widget: string }
+          - { name: title_fr, label: "Title (FR)", widget: string }
+          - { name: intro_en, label: "Intro (EN)", widget: text }
+          - { name: intro_fr, label: "Intro (FR)", widget: text }
+          - { name: heroImage, label: "Image", widget: image, required: false }
+          - { name: heroImageAlt_en, label: "Image description (EN)", widget: string, required: false }
+          - { name: heroImageAlt_fr, label: "Image description (FR)", widget: string, required: false }
+          - { name: stepsTitle_en, label: "Steps title (EN)", widget: string }
+          - { name: stepsTitle_fr, label: "Steps title (FR)", widget: string }
+          - name: steps
+            label: "Steps"
+            widget: list
+            fields:
+              - { name: title_en, label: "Title (EN)", widget: string }
+              - { name: title_fr, label: "Title (FR)", widget: string }
+              - { name: text_en, label: "Text (EN)", widget: text }
+              - { name: text_fr, label: "Text (FR)", widget: text }
+          - { name: requirementsTitle_en, label: "Requirements title (EN)", widget: string }
+          - { name: requirementsTitle_fr, label: "Requirements title (FR)", widget: string }
+          - name: requirements
+            label: "Requirements"
+            widget: list
+            fields:
+              - { name: text_en, label: "Text (EN)", widget: string }
+              - { name: text_fr, label: "Text (FR)", widget: string }
+          - { name: note_en, label: "Note (EN)", widget: text, required: false }
+          - { name: note_fr, label: "Note (FR)", widget: text, required: false }
+
       # ---- Contact
       - name: contact
         label: "Contact page"

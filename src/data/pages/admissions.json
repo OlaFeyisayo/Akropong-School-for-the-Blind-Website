@@ -1,0 +1,30 @@
+{
+  "title_en": "Admissions & enrolment",
+  "title_fr": "Inscriptions",
+  "intro_en": "We welcome blind and visually impaired children from across Ghana. Here is how to enrol your child at our school.",
+  "intro_fr": "Nous accueillons les enfants aveugles et malvoyants de tout le Ghana. Voici comment inscrire votre enfant dans notre école.",
+  "heroImage": "",
+  "heroImageAlt_en": "A new student being welcomed at school",
+  "heroImageAlt_fr": "Un nouvel élève accueilli à l'école",
+
+  "stepsTitle_en": "How to apply",
+  "stepsTitle_fr": "Comment s'inscrire",
+  "steps": [
+    { "title_en": "Get in touch", "title_fr": "Prenez contact", "text_en": "Contact the school office by phone or email to express your interest and ask any questions.", "text_fr": "Contactez le secrétariat par téléphone ou e-mail pour exprimer votre intérêt et poser vos questions." },
+    { "title_en": "Visit & assessment", "title_fr": "Visite & évaluation", "text_en": "We arrange a visit and a friendly assessment to understand your child's needs and how we can support them.", "text_fr": "Nous organisons une visite et une évaluation bienveillante pour comprendre les besoins de votre enfant et comment l'accompagner." },
+    { "title_en": "Submit documents", "title_fr": "Remettez les documents", "text_en": "Provide the required documents (see below) to complete the application.", "text_fr": "Fournissez les documents requis (voir ci-dessous) pour finaliser la demande." },
+    { "title_en": "Welcome", "title_fr": "Bienvenue", "text_en": "Once a place is confirmed, we welcome your child into our caring school community.", "text_fr": "Une fois la place confirmée, nous accueillons votre enfant dans notre communauté scolaire bienveillante." }
+  ],
+
+  "requirementsTitle_en": "What you will need",
+  "requirementsTitle_fr": "Ce qu'il vous faudra",
+  "requirements": [
+    { "text_en": "The child's birth certificate", "text_fr": "L'acte de naissance de l'enfant" },
+    { "text_en": "Any available medical or eye-health reports", "text_fr": "Les rapports médicaux ou ophtalmologiques disponibles" },
+    { "text_en": "Recent passport photographs", "text_fr": "Des photos d'identité récentes" },
+    { "text_en": "Previous school records, if any", "text_fr": "Les bulletins scolaires précédents, le cas échéant" }
+  ],
+
+  "note_en": "Please contact us to confirm the current requirements, fees and available places. (This is sample content — update it with your school's real admissions process through the admin panel.)",
+  "note_fr": "Veuillez nous contacter pour confirmer les conditions actuelles, les frais et les places disponibles. (Ceci est un exemple — mettez à jour le vrai processus d'inscription de votre école depuis le panneau d'administration.)"
+}

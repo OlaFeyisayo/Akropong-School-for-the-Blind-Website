@@ -15,6 +15,7 @@ const nav = [
   { href: localizedPath(lang, ''), key: 'nav.home' as const },
   { href: localizedPath(lang, 'about'), key: 'nav.about' as const },
   { href: localizedPath(lang, 'programs'), key: 'nav.programs' as const },
+  { href: localizedPath(lang, 'admissions'), key: 'nav.admissions' as const },
   { href: localizedPath(lang, 'news'), key: 'nav.news' as const },
   { href: localizedPath(lang, 'contact'), key: 'nav.contact' as const },
 ];
@@ -141,12 +142,10 @@ function isActive(href: string): boolean {
   .lang-sep { opacity: 0.5; }
 
   .site-header {
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 100;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    box-shadow: 0 2px 10px rgba(16, 36, 31, 0.05);
   }
   .header-inner {
     display: flex;
