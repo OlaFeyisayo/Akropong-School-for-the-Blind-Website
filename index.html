@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Akropong School for the Blind — Ghana</title>
+    <meta
+      name="description"
+      content="Akropong School for the Blind educates blind and visually impaired children in Ghana. Disability is not inability."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Restore saved accessibility preferences before paint (no flash) -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('aksb-theme');
+          var s = parseInt(localStorage.getItem('aksb-scale'), 10);
+          if (t) document.documentElement.setAttribute('data-theme', t);
+          if (s && s >= 90 && s <= 160) document.documentElement.style.fontSize = s + '%';
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

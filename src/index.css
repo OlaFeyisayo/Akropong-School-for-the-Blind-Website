@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+/* Dark mode driven by data-theme on <html> (set by the Accessibility widget) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ---------------------------------------------------------------------------
+   Design tokens — light theme (brand: light blue + white, anchored by navy)
+   Fixed brand colours (navy / primary / sky / gold) stay constant in both
+   themes so accent chips keep correct contrast. Only the semantic
+   surface / text tokens change for dark mode.
+--------------------------------------------------------------------------- */
+@theme {
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Fixed brand colours */
+  --color-navy: #0a2a5e;
+  --color-navy-700: #0d347a;
+  --color-primary: #1565c0;
+  --color-primary-600: #1256a3;
+  --color-sky: #4a9fe8;
+  --color-sky-soft: #e6f2fb;
+  --color-gold: #e0a406;
+  --color-gold-dark: #b98405;
+
+  /* Semantic tokens (overridden in dark) */
+  --color-bg: #f5f9fd;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef5fc;
+  --color-ink: #16263d;
+  --color-heading: #0a2a5e;
+  --color-muted: #51657d;
+  --color-border: #d4e3f2;
+  --color-ring: #0a2a5e;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #081320;
+  --color-surface: #0e2033;
+  --color-surface-2: #132a40;
+  --color-ink: #e7f0fa;
+  --color-heading: #eaf2fb;
+  --color-muted: #a3b8d0;
+  --color-border: #26415c;
+  --color-ring: #7cc0f5;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3
+      text-base font-semibold min-h-12 transition
+      hover:-translate-y-0.5 focus-visible:translate-y-0 min-w-0;
+  }
+  .btn-gold { background-color: var(--color-gold); color: #241a00; }
+  .btn-gold:hover { background-color: var(--color-gold-dark); color: #1a1300; }
+  .btn-primary { background-color: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background-color: var(--color-primary-600); color: #fff; }
+  .btn-white { background-color: #fff; color: var(--color-navy); }
+  .btn-white:hover { background-color: var(--color-sky-soft); }
+  .btn-outline-light {
+    background-color: transparent; color: #fff;
+    border: 2px solid rgba(255,255,255,0.55);
+  }
+  .btn-outline-light:hover { background-color: rgba(255,255,255,0.14); }
+  .card {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    @apply rounded-2xl;
+  }
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold;
+  }
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 100;
+  background: var(--color-navy);
+  color: #fff;
+  padding: 0.75rem 1.1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: 1rem; }
