@@ -6,7 +6,7 @@ import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'l
 
    ONE-TIME SETUP (about a minute):
      1. Go to https://formspree.io and sign up (free) with the school email,
-        princeadjeiotsiwah@gmail.com.
+        temilademojisola00@gmail.com.
      2. Create a new form; Formspree gives you an endpoint that looks like
         https://formspree.io/f/abcdwxyz
      3. Paste that URL into FORMSPREE_ENDPOINT below and redeploy.
@@ -18,9 +18,9 @@ import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'l
    app with the message pre-filled (addressed to the school) so nothing is lost.
 --------------------------------------------------------------------------- */
 const FORMSPREE_ENDPOINT = ''; // <-- PASTE your Formspree endpoint here
-const SCHOOL_EMAIL = 'princeadjeiotsiwah@gmail.com';
-const SCHOOL_PHONE_DISPLAY = '+233 55 159 1730';
-const SCHOOL_PHONE_TEL = '+233551591730';
+const SCHOOL_EMAIL = 'temilademojisola00@gmail.com';
+const SCHOOL_PHONE_DISPLAY = '020 761 4751';
+const SCHOOL_PHONE_TEL = '+233207614751';
 
 // Google Maps link for the school location.
 const MAP_QUERY = 'Akropong School for the Blind, Akropong-Akuapem, Eastern Region, Ghana';

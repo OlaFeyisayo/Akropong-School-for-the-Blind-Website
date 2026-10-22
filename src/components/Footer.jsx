@@ -41,15 +41,15 @@ export default function Footer() {
           <ul className="mt-3 space-y-3 text-sm">
             <li className="flex items-center gap-3">
               <Phone className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-              <a href="tel:+233551591730" className="text-sky-soft hover:text-white">+233 55 159 1730</a>
+              <a href="tel:+233207614751" className="text-sky-soft hover:text-white">020 761 4751</a>
             </li>
             <li className="flex min-w-0 items-center gap-3">
               <Mail className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
               <a
-                href="mailto:princeadjeiotsiwah@gmail.com"
+                href="mailto:temilademojisola00@gmail.com"
                 className="min-w-0 break-all text-sky-soft hover:text-white"
               >
-                princeadjeiotsiwah@gmail.com
+                temilademojisola00@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-3">

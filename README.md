@@ -23,7 +23,7 @@ Everything below is clearly marked in the code:
 
 1. **Contact form delivery (emails you each message via Formspree)** —
    `src/components/Contact.jsx`, the constant `FORMSPREE_ENDPOINT` at the top.
-   - Sign up free at <https://formspree.io> with `princeadjeiotsiwah@gmail.com`,
+   - Sign up free at <https://formspree.io> with `temilademojisola00@gmail.com`,
      create a form, and copy its endpoint (e.g. `https://formspree.io/f/abcdwxyz`).
    - Paste it into `FORMSPREE_ENDPOINT` and redeploy. The first submission sends a
      one-time confirmation email from Formspree — click it once to activate. After
