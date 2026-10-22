@@ -2,27 +2,41 @@ import { useRef, useState } from 'react';
 import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
 /* ---------------------------------------------------------------------------
-   CONTACT FORM DELIVERY
-   To receive messages by email, create a free form at https://formspree.io,
-   then paste your endpoint URL below (looks like https://formspree.io/f/abcdwxyz).
-   If this is left empty, the form falls back to opening the visitor's own email
-   app with the message pre-filled, addressed to the school.
+   CONTACT FORM DELIVERY — messages are emailed to the school via Formspree.
+
+   ONE-TIME SETUP (about a minute):
+     1. Go to https://formspree.io and sign up (free) with the school email,
+        princeadjeiotsiwah@gmail.com.
+     2. Create a new form; Formspree gives you an endpoint that looks like
+        https://formspree.io/f/abcdwxyz
+     3. Paste that URL into FORMSPREE_ENDPOINT below and redeploy.
+     4. The first real submission triggers a confirmation email from Formspree —
+        click it once to activate delivery. After that, every message arrives in
+        the school's inbox automatically.
+
+   Until the endpoint is set, the form falls back to opening the visitor's email
+   app with the message pre-filled (addressed to the school) so nothing is lost.
 --------------------------------------------------------------------------- */
-const FORMSPREE_ENDPOINT = ''; // e.g. 'https://formspree.io/f/xxxxxxxx'
+const FORMSPREE_ENDPOINT = ''; // <-- PASTE your Formspree endpoint here
 const SCHOOL_EMAIL = 'princeadjeiotsiwah@gmail.com';
 const SCHOOL_PHONE_DISPLAY = '+233 55 159 1730';
 const SCHOOL_PHONE_TEL = '+233551591730';
 
+// Google Maps link for the school location.
+const MAP_QUERY = 'Akropong School for the Blind, Akropong-Akuapem, Eastern Region, Ghana';
+export const MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_QUERY)}`;
+
 const INFO = [
   { icon: Phone, label: 'Phone', value: SCHOOL_PHONE_DISPLAY, href: `tel:${SCHOOL_PHONE_TEL}` },
   { icon: Mail, label: 'Email', value: SCHOOL_EMAIL, href: `mailto:${SCHOOL_EMAIL}` },
-  { icon: MapPin, label: 'Location', value: 'Akropong-Akuapem, Eastern Region, Ghana', href: null },
+  { icon: MapPin, label: 'Location', value: 'Akropong-Akuapem, Eastern Region, Ghana', href: MAP_URL, external: true },
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
   const [values, setValues] = useState({ name: '', email: '', message: '' });
+  const [gotcha, setGotcha] = useState(''); // honeypot (Formspree drops filled ones)
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [statusMsg, setStatusMsg] = useState('');
@@ -55,7 +69,7 @@ export default function Contact() {
       return;
     }
 
-    // No endpoint configured → fall back to the visitor's email app.
+    // Endpoint not set yet → open the visitor's email app so the message still reaches us.
     if (!FORMSPREE_ENDPOINT) {
       const subject = encodeURIComponent(`Website enquiry from ${values.name}`);
       const body = encodeURIComponent(`${values.message}\n\nFrom: ${values.name} <${values.email}>`);
@@ -71,14 +85,20 @@ export default function Contact() {
       const res = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          name: values.name,
+          email: values.email,
+          message: values.message,
+          _subject: `Website enquiry from ${values.name}`,
+          _gotcha: gotcha,
+        }),
       });
       if (res.ok) {
         setStatus('success');
         setStatusMsg('Thank you — your message has been sent. We will reply by email.');
         setValues({ name: '', email: '', message: '' });
       } else {
-        throw new Error('Request failed');
+        throw new Error('Request failed with status ' + res.status);
       }
     } catch {
       setStatus('error');
@@ -105,7 +125,7 @@ export default function Contact() {
           </p>
 
           <ul className="mt-8 space-y-4">
-            {INFO.map(({ icon: Icon, label, value, href }) => (
+            {INFO.map(({ icon: Icon, label, value, href, external }) => (
               <li key={label} className="card flex min-w-0 items-start gap-4 p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-soft text-navy">
                   <Icon className="h-5 w-5" aria-hidden="true" />
@@ -113,8 +133,17 @@ export default function Contact() {
                 <div className="min-w-0">
                   <div className="text-sm font-semibold text-muted">{label}</div>
                   {href ? (
-                    <a href={href} className="font-semibold text-ink break-all hover:text-primary">
+                    <a
+                      href={href}
+                      target={external ? '_blank' : undefined}
+                      rel={external ? 'noopener noreferrer' : undefined}
+                      className={
+                        'font-semibold text-ink hover:text-primary ' +
+                        (label === 'Email' ? 'break-all' : 'break-words')
+                      }
+                    >
                       {value}
+                      {external && <span className="sr-only"> (opens in Google Maps in a new tab)</span>}
                     </a>
                   ) : (
                     <div className="font-semibold text-ink">{value}</div>
@@ -128,6 +157,20 @@ export default function Contact() {
         {/* Form */}
         <div className="min-w-0">
           <form onSubmit={handleSubmit} noValidate className="card min-w-0 p-6 sm:p-8">
+            {/* Honeypot: hidden from people, tempting to bots */}
+            <p hidden aria-hidden="true">
+              <label>
+                Don&rsquo;t fill this out:{' '}
+                <input
+                  name="_gotcha"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={gotcha}
+                  onChange={(e) => setGotcha(e.target.value)}
+                />
+              </label>
+            </p>
+
             <h3 className="text-2xl">Send us a message</h3>
 
             {/* Status announcements for screen readers */}
@@ -157,6 +200,7 @@ export default function Contact() {
                 </label>
                 <input
                   id="cf-name"
+                  name="name"
                   ref={refs.name}
                   type="text"
                   autoComplete="name"
@@ -180,6 +224,7 @@ export default function Contact() {
                 </label>
                 <input
                   id="cf-email"
+                  name="email"
                   ref={refs.email}
                   type="email"
                   autoComplete="email"
@@ -203,6 +248,7 @@ export default function Contact() {
                 </label>
                 <textarea
                   id="cf-message"
+                  name="message"
                   ref={refs.message}
                   rows={5}
                   value={values.message}

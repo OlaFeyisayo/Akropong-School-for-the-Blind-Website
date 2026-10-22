@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
+import { MAP_URL } from './Contact.jsx';
 
 const NAV = [
   { href: '#about', label: 'About' },
@@ -53,7 +54,15 @@ export default function Footer() {
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-              <span className="text-sky-soft">Akropong-Akuapem, Eastern Region, Ghana</span>
+              <a
+                href={MAP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-soft hover:text-white hover:underline"
+              >
+                Akropong-Akuapem, Eastern Region, Ghana
+                <span className="sr-only"> (opens in Google Maps in a new tab)</span>
+              </a>
             </li>
           </ul>
         </div>

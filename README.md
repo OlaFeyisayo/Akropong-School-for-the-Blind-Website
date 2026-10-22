@@ -21,12 +21,16 @@ Requires Node 18+.
 
 Everything below is clearly marked in the code:
 
-1. **Formspree endpoint (contact form delivery)** — `src/components/Contact.jsx`, the
-   constant `FORMSPREE_ENDPOINT` at the top of the file.
-   - Create a free form at <https://formspree.io>, then paste your endpoint
-     (e.g. `https://formspree.io/f/abcdwxyz`).
-   - **If left empty**, the form falls back to opening the visitor's own email app
-     (`mailto:`) with the message pre-filled, addressed to the school.
+1. **Contact form delivery (emails you each message via Formspree)** —
+   `src/components/Contact.jsx`, the constant `FORMSPREE_ENDPOINT` at the top.
+   - Sign up free at <https://formspree.io> with `princeadjeiotsiwah@gmail.com`,
+     create a form, and copy its endpoint (e.g. `https://formspree.io/f/abcdwxyz`).
+   - Paste it into `FORMSPREE_ENDPOINT` and redeploy. The first submission sends a
+     one-time confirmation email from Formspree — click it once to activate. After
+     that, every message arrives in the school's inbox automatically.
+   - **Until the endpoint is set**, the form opens the visitor's own email app with
+     the message pre-filled (addressed to the school) so nothing is lost.
+   - The location links (contact card + footer) open the school on **Google Maps**.
 2. **Bank / Mobile-Money details** — `src/components/Donate.jsx`. Replace the two
    `[ to be added ]` placeholders with the real bank transfer and MoMo details.
 3. **Photos** — `public/images/` (`school-event.jpg`, `dining-hall.jpg`,
