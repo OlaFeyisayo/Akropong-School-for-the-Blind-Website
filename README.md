@@ -59,8 +59,14 @@ This is a school for the blind, so accessibility is treated as critical:
 index.html                 # entry + pre-paint theme/text-size restore
 src/
   index.css                # Tailwind v4 @theme tokens (light) + dark overrides
-  App.jsx                  # layout + theme/text-size state
+  App.jsx                  # routes (React Router) + theme/text-size state
+  main.jsx                 # BrowserRouter mount
+  pages/                   # one file per page/URL
+    Home.jsx  AboutPage.jsx  ProgramsPage.jsx
+    AdmissionsPage.jsx  DonatePage.jsx  ContactPage.jsx  NotFound.jsx
   components/
+    Layout.jsx             # shared nav + footer + accessibility widget + <Outlet/>
+    ScrollToTop.jsx        # scrolls to top on page change
     Logo.jsx               # inline SVG logo (sun + open book + Braille cell)
     Nav.jsx  Hero.jsx  Stats.jsx  About.jsx  Programs.jsx
     Admissions.jsx  Donate.jsx  Contact.jsx  Footer.jsx
@@ -68,9 +74,18 @@ src/
 public/
   images/                  # school photos
   favicon.svg
+  _redirects               # SPA fallback so deep links work on Netlify
 ```
+
+## Pages
+
+The site has separate pages, each with its own URL:
+`/` (home), `/about`, `/programs`, `/admissions`, `/donate`, `/contact`.
+Routing is handled client-side with React Router; `public/_redirects` ensures a
+direct visit or refresh of any URL still loads correctly on Netlify.
 
 ## Deploy
 
 Any static host works. On **Netlify** or **Vercel**: build command `npm run build`,
-publish directory `dist`.
+publish directory `dist`. (The included `netlify.toml` and `_redirects` set this up
+for Netlify.)

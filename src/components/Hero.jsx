@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Heart, GraduationCap, Sparkles } from 'lucide-react';
 
 export default function Hero() {
@@ -23,12 +24,12 @@ export default function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#donate" className="btn btn-gold">
+            <Link to="/donate" className="btn btn-gold">
               <Heart className="h-5 w-5" aria-hidden="true" /> Donate now
-            </a>
-            <a href="#admissions" className="btn btn-outline-light">
+            </Link>
+            <Link to="/admissions" className="btn btn-outline-light">
               <GraduationCap className="h-5 w-5" aria-hidden="true" /> Admissions
-            </a>
+            </Link>
           </div>
         </div>
 

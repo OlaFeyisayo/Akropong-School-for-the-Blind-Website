@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
 import { MAP_URL } from './Contact.jsx';
 
 const NAV = [
-  { href: '#about', label: 'About' },
-  { href: '#programs', label: 'Programs' },
-  { href: '#admissions', label: 'Admissions' },
-  { href: '#donate', label: 'Donate' },
-  { href: '#contact', label: 'Contact' },
+  { to: '/about', label: 'About' },
+  { to: '/programs', label: 'Programs' },
+  { to: '/admissions', label: 'Admissions' },
+  { to: '/donate', label: 'Donate' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 export default function Footer() {
@@ -29,8 +30,8 @@ export default function Footer() {
           <h2 className="font-display text-base font-semibold text-white">Explore</h2>
           <ul className="mt-3 space-y-2 text-sm">
             {NAV.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="text-sky-soft hover:text-white hover:underline">{l.label}</a>
+              <li key={l.to}>
+                <Link to={l.to} className="text-sky-soft hover:text-white hover:underline">{l.label}</Link>
               </li>
             ))}
           </ul>

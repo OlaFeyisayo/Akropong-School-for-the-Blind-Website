@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { HeartHandshake, BookOpen, Users, Landmark, Smartphone, Heart } from 'lucide-react';
 
 const WAYS = [
@@ -52,9 +53,9 @@ export default function Donate() {
               Give securely online, or use the bank / mobile-money details below.
             </p>
 
-            <a href="#contact" className="btn btn-gold mt-5 w-full">
+            <Link to="/contact" className="btn btn-gold mt-5 w-full">
               <Heart className="h-5 w-5" aria-hidden="true" /> Donate now
-            </a>
+            </Link>
 
             <dl className="mt-6 space-y-4 border-t border-border pt-5 text-sm">
               <div className="flex min-w-0 items-start gap-3">

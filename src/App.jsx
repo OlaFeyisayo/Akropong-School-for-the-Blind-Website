@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import Nav from './components/Nav.jsx';
-import Hero from './components/Hero.jsx';
-import Stats from './components/Stats.jsx';
-import About from './components/About.jsx';
-import Programs from './components/Programs.jsx';
-import Admissions from './components/Admissions.jsx';
-import Donate from './components/Donate.jsx';
-import Contact from './components/Contact.jsx';
-import Footer from './components/Footer.jsx';
-import AccessibilityWidget from './components/AccessibilityWidget.jsx';
+import { Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout.jsx';
+import ScrollToTop from './components/ScrollToTop.jsx';
+import Home from './pages/Home.jsx';
+import AboutPage from './pages/AboutPage.jsx';
+import ProgramsPage from './pages/ProgramsPage.jsx';
+import AdmissionsPage from './pages/AdmissionsPage.jsx';
+import DonatePage from './pages/DonatePage.jsx';
+import ContactPage from './pages/ContactPage.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 const MIN_SCALE = 90;
 const MAX_SCALE = 160;
@@ -48,26 +48,29 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#main">Skip to main content</a>
-      <Nav />
-      <main id="main">
-        <Hero />
-        <Stats />
-        <About />
-        <Programs />
-        <Admissions />
-        <Donate />
-        <Contact />
-      </main>
-      <Footer />
-      <AccessibilityWidget
-        theme={theme}
-        setTheme={setTheme}
-        scale={scale}
-        setScale={setScale}
-        minScale={MIN_SCALE}
-        maxScale={MAX_SCALE}
-      />
+      <ScrollToTop />
+      <Routes>
+        <Route
+          element={
+            <Layout
+              theme={theme}
+              setTheme={setTheme}
+              scale={scale}
+              setScale={setScale}
+              minScale={MIN_SCALE}
+              maxScale={MAX_SCALE}
+            />
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="programs" element={<ProgramsPage />} />
+          <Route path="admissions" element={<AdmissionsPage />} />
+          <Route path="donate" element={<DonatePage />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </>
   );
 }

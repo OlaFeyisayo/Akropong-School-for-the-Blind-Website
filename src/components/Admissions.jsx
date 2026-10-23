@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { PhoneCall, FileText, ClipboardCheck } from 'lucide-react';
 
 const STEPS = [
@@ -34,7 +35,7 @@ export default function Admissions() {
             <p className="mt-3 text-muted">
               Please contact us to confirm current requirements, fees and available places.
             </p>
-            <a href="#contact" className="btn btn-primary mt-6">Contact admissions</a>
+            <Link to="/contact" className="btn btn-primary mt-6">Contact admissions</Link>
           </div>
         </div>
 
