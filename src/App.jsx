@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import ProgramsPage from './pages/ProgramsPage.jsx';
 import AdmissionsPage from './pages/AdmissionsPage.jsx';
+import EventsPage from './pages/EventsPage.jsx';
 import DonatePage from './pages/DonatePage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import NotFound from './pages/NotFound.jsx';
@@ -66,6 +67,7 @@ export default function App() {
           <Route path="about" element={<AboutPage />} />
           <Route path="programs" element={<ProgramsPage />} />
           <Route path="admissions" element={<AdmissionsPage />} />
+          <Route path="events" element={<EventsPage />} />
           <Route path="donate" element={<DonatePage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
