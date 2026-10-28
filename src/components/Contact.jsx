@@ -17,7 +17,7 @@ import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'l
    Until the endpoint is set, the form falls back to opening the visitor's email
    app with the message pre-filled (addressed to the school) so nothing is lost.
 --------------------------------------------------------------------------- */
-const FORMSPREE_ENDPOINT = ''; // <-- PASTE your Formspree endpoint here
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeejgzv';
 const SCHOOL_EMAIL = 'temilademojisola00@gmail.com';
 const SCHOOL_PHONE_DISPLAY = '020 761 4751';
 const SCHOOL_PHONE_TEL = '+233207614751';
