@@ -26,8 +26,7 @@ export default function About() {
 
         {/* Story */}
         <div className="min-w-0">
-          <span className="chip bg-sky-soft text-navy">About our school</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">A place to learn, grow and belong</h2>
+          <h2 className="text-3xl sm:text-4xl">A place to learn, grow and belong</h2>
           <p className="mt-4 text-lg text-ink">
             Akropong School for the Blind is one of Ghana&rsquo;s pioneering schools for the
             education of blind and visually impaired children. For generations we have welcomed

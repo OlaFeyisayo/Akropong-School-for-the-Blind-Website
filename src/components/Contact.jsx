@@ -118,13 +118,7 @@ export default function Contact() {
       <div className="wrap grid gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Info */}
         <div className="min-w-0">
-          <span className="chip bg-sky-soft text-navy">Contact us</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">We&rsquo;d love to hear from you</h2>
-          <p className="mt-3 text-muted">
-            Whether you are a parent, partner, volunteer or well-wisher, please reach out.
-          </p>
-
-          <ul className="mt-8 space-y-4">
+          <ul className="space-y-4">
             {INFO.map(({ icon: Icon, label, value, href, external }) => (
               <li key={label} className="card flex min-w-0 items-start gap-4 p-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-soft text-navy">

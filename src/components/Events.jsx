@@ -31,9 +31,7 @@ export default function Events() {
     <section id="events" className="bg-bg py-16 sm:py-24">
       <div className="wrap">
         <div className="max-w-2xl">
-          <span className="chip bg-sky-soft text-navy">Events</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">Events &amp; celebrations</h2>
-          <p className="mt-3 text-lg text-ink">
+          <p className="text-lg text-ink">
             Moments from events our students have taken part in — including our
             80th anniversary celebration, marking 80 years of blind education in Ghana.
           </p>

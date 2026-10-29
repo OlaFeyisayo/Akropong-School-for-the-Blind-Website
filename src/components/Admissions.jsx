@@ -26,9 +26,7 @@ export default function Admissions() {
         {/* Sticky intro */}
         <div className="min-w-0 lg:col-span-2">
           <div className="lg:sticky lg:top-24">
-            <span className="chip bg-sky-soft text-navy">Admissions</span>
-            <h2 className="mt-4 text-3xl sm:text-4xl">Enrol your child</h2>
-            <p className="mt-4 text-lg text-ink">
+            <p className="text-lg text-ink">
               We welcome blind and visually impaired children from across Ghana. The process is
               simple and personal — we are here to guide you at every step.
             </p>

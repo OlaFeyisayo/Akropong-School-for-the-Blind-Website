@@ -25,9 +25,7 @@ export default function Donate() {
       <div className="wrap grid gap-10 lg:grid-cols-5 lg:gap-12">
         {/* Ways to give */}
         <div className="min-w-0 lg:col-span-3">
-          <span className="chip bg-gold text-navy">Support our students</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">Your gift changes a child&rsquo;s life</h2>
-          <p className="mt-3 max-w-xl text-muted">
+          <p className="max-w-xl text-muted">
             A gift of any size helps provide Braille books, meals, learning materials and loving
             care. Here are three ways to help.
           </p>
