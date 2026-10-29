@@ -1,23 +1,13 @@
 import { useRef, useState } from 'react';
-import { Phone, Mail, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 /* ---------------------------------------------------------------------------
-   CONTACT FORM DELIVERY — messages are emailed to the school via Formspree.
+   CONTACT FORM DELIVERY — messages go straight to the school's email.
 
-   ONE-TIME SETUP (about a minute):
-     1. Go to https://formspree.io and sign up (free) with the school email,
-        temilademojisola00@gmail.com.
-     2. Create a new form; Formspree gives you an endpoint that looks like
-        https://formspree.io/f/abcdwxyz
-     3. Paste that URL into FORMSPREE_ENDPOINT below and redeploy.
-     4. The first real submission triggers a confirmation email from Formspree —
-        click it once to activate delivery. After that, every message arrives in
-        the school's inbox automatically.
-
-   Until the endpoint is set, the form falls back to opening the visitor's email
-   app with the message pre-filled (addressed to the school) so nothing is lost.
+   On submit, the form opens the visitor's own email app (Gmail, Mail, Outlook,
+   etc.) with a new message pre-filled and addressed to SCHOOL_EMAIL; the visitor
+   presses Send. No third-party service or server is involved.
 --------------------------------------------------------------------------- */
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maeejgzv';
 const SCHOOL_EMAIL = 'temilademojisola00@gmail.com';
 const SCHOOL_PHONE_DISPLAY = '020 761 4751';
 const SCHOOL_PHONE_TEL = '+233207614751';
@@ -36,9 +26,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Contact() {
   const [values, setValues] = useState({ name: '', email: '', message: '' });
-  const [gotcha, setGotcha] = useState(''); // honeypot (Formspree drops filled ones)
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [status, setStatus] = useState('idle'); // idle | success
   const [statusMsg, setStatusMsg] = useState('');
 
   const refs = { name: useRef(null), email: useRef(null), message: useRef(null) };
@@ -57,7 +46,7 @@ export default function Contact() {
     if (errors[field]) setErrors((e) => ({ ...e, [field]: undefined }));
   }
 
-  async function handleSubmit(ev) {
+  function handleSubmit(ev) {
     ev.preventDefault();
     const e = validate(values);
     setErrors(e);
@@ -69,43 +58,14 @@ export default function Contact() {
       return;
     }
 
-    // Endpoint not set yet → open the visitor's email app so the message still reaches us.
-    if (!FORMSPREE_ENDPOINT) {
-      const subject = encodeURIComponent(`Website enquiry from ${values.name}`);
-      const body = encodeURIComponent(`${values.message}\n\nFrom: ${values.name} <${values.email}>`);
-      window.location.href = `mailto:${SCHOOL_EMAIL}?subject=${subject}&body=${body}`;
-      setStatus('success');
-      setStatusMsg('Your email app should now open with your message ready to send.');
-      return;
-    }
-
-    try {
-      setStatus('submitting');
-      setStatusMsg('Sending your message…');
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          name: values.name,
-          email: values.email,
-          message: values.message,
-          _subject: `Website enquiry from ${values.name}`,
-          _gotcha: gotcha,
-        }),
-      });
-      if (res.ok) {
-        setStatus('success');
-        setStatusMsg('Thank you — your message has been sent. We will reply by email.');
-        setValues({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Request failed with status ' + res.status);
-      }
-    } catch {
-      setStatus('error');
-      setStatusMsg(
-        `Sorry, something went wrong. Please email us directly at ${SCHOOL_EMAIL} or call ${SCHOOL_PHONE_DISPLAY}.`
-      );
-    }
+    // Open the visitor's email app with the message addressed to the school.
+    const subject = encodeURIComponent(`Website enquiry from ${values.name}`);
+    const body = encodeURIComponent(`${values.message}\n\nFrom: ${values.name} <${values.email}>`);
+    window.location.href = `mailto:${SCHOOL_EMAIL}?subject=${subject}&body=${body}`;
+    setStatus('success');
+    setStatusMsg(
+      `Your email app should now open with your message ready to send to ${SCHOOL_EMAIL}. If it doesn't, please email us directly at ${SCHOOL_EMAIL} or call ${SCHOOL_PHONE_DISPLAY}.`
+    );
   }
 
   const invalidCls = 'border-red-500 dark:border-red-400';
@@ -151,20 +111,6 @@ export default function Contact() {
         {/* Form */}
         <div className="min-w-0">
           <form onSubmit={handleSubmit} noValidate className="card min-w-0 p-6 sm:p-8">
-            {/* Honeypot: hidden from people, tempting to bots */}
-            <p hidden aria-hidden="true">
-              <label>
-                Don&rsquo;t fill this out:{' '}
-                <input
-                  name="_gotcha"
-                  tabIndex={-1}
-                  autoComplete="off"
-                  value={gotcha}
-                  onChange={(e) => setGotcha(e.target.value)}
-                />
-              </label>
-            </p>
-
             <h3 className="text-2xl">Send us a message</h3>
 
             {/* Status announcements for screen readers */}
@@ -259,16 +205,8 @@ export default function Contact() {
                 )}
               </div>
 
-              <button type="submit" className="btn btn-primary w-full" disabled={status === 'submitting'}>
-                {status === 'submitting' ? (
-                  <>
-                    <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" /> Sending…
-                  </>
-                ) : (
-                  <>
-                    <Send className="h-5 w-5" aria-hidden="true" /> Send message
-                  </>
-                )}
+              <button type="submit" className="btn btn-primary w-full">
+                <Send className="h-5 w-5" aria-hidden="true" /> Send message
               </button>
               <p className="text-xs text-muted">
                 <span className="text-red-600" aria-hidden="true">*</span> Required fields. We will reply by email.
