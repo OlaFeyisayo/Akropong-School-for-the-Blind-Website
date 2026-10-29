@@ -19,7 +19,9 @@ export default function Footer() {
       <div className="wrap grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="min-w-0 sm:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-2.5 text-white">
-            <Logo className="h-10 w-10 shrink-0" />
+            <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white">
+              <Logo className="h-11 w-11" />
+            </span>
             <span className="font-display text-lg font-bold">Akropong School for the Blind</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-sky-soft">
