@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { HeartHandshake, BookOpen, Users, Landmark, Smartphone, Heart } from 'lucide-react';
+import { HeartHandshake, BookOpen, Users, Landmark, Smartphone } from 'lucide-react';
 
 const WAYS = [
   {
@@ -47,13 +46,13 @@ export default function Donate() {
         <div className="min-w-0 lg:col-span-2">
           <div className="card min-w-0 overflow-hidden p-6 shadow-xl">
             <h3 className="text-2xl">Make a donation</h3>
-            <p className="mt-2 text-sm text-muted">
-              Give securely online, or use the bank / mobile-money details below.
+            <p className="mt-3 text-ink">
+              To donate, contact us on{' '}
+              <a href="tel:+233553511126" className="font-bold text-primary hover:underline">
+                0553511126
+              </a>
+              , or use the bank / mobile-money details below.
             </p>
-
-            <Link to="/contact" className="btn btn-gold mt-5 w-full">
-              <Heart className="h-5 w-5" aria-hidden="true" /> Donate now
-            </Link>
 
             <dl className="mt-6 space-y-4 border-t border-border pt-5 text-sm">
               <div className="flex min-w-0 items-start gap-3">
