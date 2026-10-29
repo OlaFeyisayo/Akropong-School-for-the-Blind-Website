@@ -7,16 +7,16 @@ export default function About() {
         {/* Image collage */}
         <div className="relative min-w-0 max-w-lg">
           <img
-            src="/images/dining-hall.jpg"
-            alt="Students sharing a meal together in the dining hall; one wears a shirt that reads ‘Disability is not inability’."
+            src="/images/events-anniversary.jpg"
+            alt="Students marching with placards celebrating ‘80 years of blind education in Ghana’ during the anniversary celebration."
             width="620"
             height="460"
             className="aspect-[4/3] w-full rounded-3xl object-cover shadow-xl"
             loading="lazy"
           />
           <img
-            src="/images/student-portrait.jpg"
-            alt="A caregiver with three smiling students at Akropong School for the Blind."
+            src="/images/events-guided-walk.jpg"
+            alt="A student using a white cane walking with classmates."
             width="300"
             height="300"
             className="absolute -bottom-8 -right-4 hidden aspect-square w-2/5 rounded-2xl border-4 border-bg object-cover shadow-2xl sm:block"
@@ -26,8 +26,7 @@ export default function About() {
 
         {/* Story */}
         <div className="min-w-0">
-          <span className="chip bg-sky-soft text-navy">About our school</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">A place to learn, grow and belong</h2>
+          <h2 className="text-3xl sm:text-4xl">A place to learn, grow and belong</h2>
           <p className="mt-4 text-lg text-ink">
             Akropong School for the Blind is one of Ghana&rsquo;s pioneering schools for the
             education of blind and visually impaired children. For generations we have welcomed

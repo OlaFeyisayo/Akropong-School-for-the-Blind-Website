@@ -33,19 +33,21 @@ const PROGRAMS = [
   },
 ];
 
-export default function Programs() {
+export default function Programs({ showIntro = true }) {
   return (
     <section id="programs" className="scroll-mt-20 bg-surface-2 py-16 sm:py-24">
       <div className="wrap">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="chip bg-sky-soft text-navy">Programs &amp; academics</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">How we help every child flourish</h2>
-          <p className="mt-3 text-muted">
-            A rounded education — academic, practical and personal — designed around each student&rsquo;s needs.
-          </p>
-        </div>
+        {showIntro && (
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="chip bg-sky-soft text-navy">Programs &amp; academics</span>
+            <h2 className="mt-4 text-3xl sm:text-4xl">How we help every child flourish</h2>
+            <p className="mt-3 text-muted">
+              A rounded education — academic, practical and personal — designed around each student&rsquo;s needs.
+            </p>
+          </div>
+        )}
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className={`${showIntro ? 'mt-12' : ''} grid gap-5 sm:grid-cols-2 lg:grid-cols-3`}>
           {PROGRAMS.map(({ icon: Icon, title, text }) => (
             <li key={title} className="card min-w-0 p-6 transition hover:-translate-y-1 hover:shadow-xl">
               <span className="grid h-14 w-14 place-items-center rounded-2xl bg-sky-soft text-navy">

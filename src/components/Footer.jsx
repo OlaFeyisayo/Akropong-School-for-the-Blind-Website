@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import Logo from './Logo.jsx';
+import { MAP_URL } from './Contact.jsx';
 
 const NAV = [
-  { href: '#about', label: 'About' },
-  { href: '#programs', label: 'Programs' },
-  { href: '#admissions', label: 'Admissions' },
-  { href: '#donate', label: 'Donate' },
-  { href: '#contact', label: 'Contact' },
+  { to: '/about', label: 'About' },
+  { to: '/programs', label: 'Programs' },
+  { to: '/admissions', label: 'Admissions' },
+  { to: '/events', label: 'Events' },
+  { to: '/donate', label: 'Donate' },
+  { to: '/contact', label: 'Contact' },
 ];
 
 export default function Footer() {
@@ -16,7 +19,9 @@ export default function Footer() {
       <div className="wrap grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="min-w-0 sm:col-span-2 lg:col-span-1">
           <div className="flex items-center gap-2.5 text-white">
-            <Logo className="h-10 w-10 shrink-0" />
+            <span className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-white">
+              <Logo className="h-11 w-11" />
+            </span>
             <span className="font-display text-lg font-bold">Akropong School for the Blind</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-sky-soft">
@@ -28,8 +33,8 @@ export default function Footer() {
           <h2 className="font-display text-base font-semibold text-white">Explore</h2>
           <ul className="mt-3 space-y-2 text-sm">
             {NAV.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="text-sky-soft hover:text-white hover:underline">{l.label}</a>
+              <li key={l.to}>
+                <Link to={l.to} className="text-sky-soft hover:text-white hover:underline">{l.label}</Link>
               </li>
             ))}
           </ul>
@@ -40,20 +45,28 @@ export default function Footer() {
           <ul className="mt-3 space-y-3 text-sm">
             <li className="flex items-center gap-3">
               <Phone className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-              <a href="tel:+233551591730" className="text-sky-soft hover:text-white">+233 55 159 1730</a>
+              <a href="tel:+233207614751" className="text-sky-soft hover:text-white">020 761 4751</a>
             </li>
             <li className="flex min-w-0 items-center gap-3">
               <Mail className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
               <a
-                href="mailto:princeadjeiotsiwah@gmail.com"
+                href="mailto:temilademojisola00@gmail.com"
                 className="min-w-0 break-all text-sky-soft hover:text-white"
               >
-                princeadjeiotsiwah@gmail.com
+                temilademojisola00@gmail.com
               </a>
             </li>
             <li className="flex items-center gap-3">
               <MapPin className="h-5 w-5 shrink-0 text-gold" aria-hidden="true" />
-              <span className="text-sky-soft">Akropong-Akuapem, Eastern Region, Ghana</span>
+              <a
+                href={MAP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sky-soft hover:text-white hover:underline"
+              >
+                Akropong-Akuapem, Eastern Region, Ghana
+                <span className="sr-only"> (opens in Google Maps in a new tab)</span>
+              </a>
             </li>
           </ul>
         </div>

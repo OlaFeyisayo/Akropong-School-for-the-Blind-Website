@@ -21,12 +21,16 @@ Requires Node 18+.
 
 Everything below is clearly marked in the code:
 
-1. **Formspree endpoint (contact form delivery)** — `src/components/Contact.jsx`, the
-   constant `FORMSPREE_ENDPOINT` at the top of the file.
-   - Create a free form at <https://formspree.io>, then paste your endpoint
-     (e.g. `https://formspree.io/f/abcdwxyz`).
-   - **If left empty**, the form falls back to opening the visitor's own email app
-     (`mailto:`) with the message pre-filled, addressed to the school.
+1. **Contact form delivery (emails you each message via Formspree)** —
+   `src/components/Contact.jsx`, the constant `FORMSPREE_ENDPOINT` at the top.
+   - Sign up free at <https://formspree.io> with `temilademojisola00@gmail.com`,
+     create a form, and copy its endpoint (e.g. `https://formspree.io/f/abcdwxyz`).
+   - Paste it into `FORMSPREE_ENDPOINT` and redeploy. The first submission sends a
+     one-time confirmation email from Formspree — click it once to activate. After
+     that, every message arrives in the school's inbox automatically.
+   - **Until the endpoint is set**, the form opens the visitor's own email app with
+     the message pre-filled (addressed to the school) so nothing is lost.
+   - The location links (contact card + footer) open the school on **Google Maps**.
 2. **Bank / Mobile-Money details** — `src/components/Donate.jsx`. Replace the two
    `[ to be added ]` placeholders with the real bank transfer and MoMo details.
 3. **Photos** — `public/images/` (`school-event.jpg`, `dining-hall.jpg`,
@@ -55,8 +59,14 @@ This is a school for the blind, so accessibility is treated as critical:
 index.html                 # entry + pre-paint theme/text-size restore
 src/
   index.css                # Tailwind v4 @theme tokens (light) + dark overrides
-  App.jsx                  # layout + theme/text-size state
+  App.jsx                  # routes (React Router) + theme/text-size state
+  main.jsx                 # BrowserRouter mount
+  pages/                   # one file per page/URL
+    Home.jsx  AboutPage.jsx  ProgramsPage.jsx
+    AdmissionsPage.jsx  DonatePage.jsx  ContactPage.jsx  NotFound.jsx
   components/
+    Layout.jsx             # shared nav + footer + accessibility widget + <Outlet/>
+    ScrollToTop.jsx        # scrolls to top on page change
     Logo.jsx               # inline SVG logo (sun + open book + Braille cell)
     Nav.jsx  Hero.jsx  Stats.jsx  About.jsx  Programs.jsx
     Admissions.jsx  Donate.jsx  Contact.jsx  Footer.jsx
@@ -64,9 +74,18 @@ src/
 public/
   images/                  # school photos
   favicon.svg
+  _redirects               # SPA fallback so deep links work on Netlify
 ```
+
+## Pages
+
+The site has separate pages, each with its own URL:
+`/` (home), `/about`, `/programs`, `/admissions`, `/donate`, `/contact`.
+Routing is handled client-side with React Router; `public/_redirects` ensures a
+direct visit or refresh of any URL still loads correctly on Netlify.
 
 ## Deploy
 
 Any static host works. On **Netlify** or **Vercel**: build command `npm run build`,
-publish directory `dist`.
+publish directory `dist`. (The included `netlify.toml` and `_redirects` set this up
+for Netlify.)

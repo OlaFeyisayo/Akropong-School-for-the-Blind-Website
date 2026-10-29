@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { HeartHandshake, BookOpen, Users, Landmark, Smartphone, Heart } from 'lucide-react';
 
 const WAYS = [
@@ -24,9 +25,7 @@ export default function Donate() {
       <div className="wrap grid gap-10 lg:grid-cols-5 lg:gap-12">
         {/* Ways to give */}
         <div className="min-w-0 lg:col-span-3">
-          <span className="chip bg-gold text-navy">Support our students</span>
-          <h2 className="mt-4 text-3xl sm:text-4xl">Your gift changes a child&rsquo;s life</h2>
-          <p className="mt-3 max-w-xl text-muted">
+          <p className="max-w-xl text-muted">
             A gift of any size helps provide Braille books, meals, learning materials and loving
             care. Here are three ways to help.
           </p>
@@ -52,9 +51,9 @@ export default function Donate() {
               Give securely online, or use the bank / mobile-money details below.
             </p>
 
-            <a href="#contact" className="btn btn-gold mt-5 w-full">
+            <Link to="/contact" className="btn btn-gold mt-5 w-full">
               <Heart className="h-5 w-5" aria-hidden="true" /> Donate now
-            </a>
+            </Link>
 
             <dl className="mt-6 space-y-4 border-t border-border pt-5 text-sm">
               <div className="flex min-w-0 items-start gap-3">

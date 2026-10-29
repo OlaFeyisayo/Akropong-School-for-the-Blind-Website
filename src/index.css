@@ -106,6 +106,13 @@
   .chip {
     @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold;
   }
+  /* Frosted-glass panel (used over parallax photos) */
+  .glass {
+    background-color: rgb(255 255 255 / 0.10);
+    border: 1px solid rgb(255 255 255 / 0.22);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+  }
 }
 
 /* Skip link */
