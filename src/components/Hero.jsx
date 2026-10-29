@@ -1,15 +1,27 @@
 import { Link } from 'react-router-dom';
 import { Heart, GraduationCap, Sparkles } from 'lucide-react';
+import ParallaxBg from './ParallaxBg.jsx';
+
+const STATS = [
+  { value: 'Est. 1945', label: 'Serving children in Ghana' },
+  { value: '80 years', label: 'Of blind education' },
+  { value: 'Braille', label: 'At the heart of learning' },
+];
 
 export default function Hero() {
   return (
-    <section id="top" className="bg-navy text-white">
-      <div className="wrap grid items-center gap-10 py-14 md:grid-cols-2 md:py-20">
-        {/* Copy */}
-        <div className="min-w-0">
-          <span className="chip bg-white/10 text-sky-soft ring-1 ring-white/20">
+    <section className="relative isolate overflow-hidden">
+      <ParallaxBg src="/images/events-girls-procession.jpg" />
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/70 to-navy/45"
+        aria-hidden="true"
+      ></div>
+
+      <div className="relative wrap py-20 sm:py-28 lg:py-32">
+        <div className="max-w-2xl rounded-3xl glass p-7 shadow-2xl sm:p-10">
+          <span className="chip bg-white/15 text-white ring-1 ring-white/25">
             <Sparkles className="h-4 w-4 text-gold" aria-hidden="true" />
-            Educating blind & visually impaired children
+            Educating blind &amp; visually impaired children
           </span>
 
           <h1 className="mt-5 text-4xl leading-[1.05] text-white sm:text-5xl lg:text-6xl">
@@ -17,9 +29,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-5 max-w-xl text-lg leading-relaxed text-sky-soft">
-            At Akropong School for the Blind in Ghana, we give blind and visually impaired
-            children the education, Braille skills and loving care they need to thrive.
-            Here we live by one truth:{' '}
+            At Akropong School for the Blind in Ghana, we give blind and visually impaired children
+            the education, Braille skills and loving care they need to thrive. We live by one truth:{' '}
             <strong className="font-semibold text-gold">Disability is not inability.</strong>
           </p>
 
@@ -33,26 +44,14 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Photo + floating card */}
-        <div className="relative min-w-0">
-          <img
-            src="/images/events-girls-procession.jpg"
-            alt="Students in blue uniforms walking together in procession during the school's 80th anniversary celebration."
-            width="720"
-            height="540"
-            className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl"
-            loading="eager"
-          />
-          <div className="absolute -bottom-5 -left-3 flex items-center gap-3 rounded-2xl bg-surface p-4 shadow-xl sm:-left-6">
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold text-navy">
-              <GraduationCap className="h-6 w-6" aria-hidden="true" />
-            </span>
-            <span className="min-w-0">
-              <span className="block font-display text-2xl font-extrabold text-heading">70+ years</span>
-              <span className="block text-sm text-muted">serving children in Ghana</span>
-            </span>
-          </div>
-        </div>
+        <dl className="mt-8 grid max-w-3xl gap-4 sm:grid-cols-3">
+          {STATS.map((s) => (
+            <div key={s.value} className="rounded-2xl glass p-5">
+              <dd className="font-display text-2xl font-extrabold text-white">{s.value}</dd>
+              <dt className="mt-1 text-sm text-sky-soft">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );
