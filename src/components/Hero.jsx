@@ -36,8 +36,8 @@ export default function Hero() {
         {/* Photo + floating card */}
         <div className="relative min-w-0">
           <img
-            src="/images/school-event.jpg"
-            alt="Students and staff gathered for an outdoor event under shady trees at Akropong School for the Blind."
+            src="/images/events-girls-procession.jpg"
+            alt="Students in blue uniforms walking together in procession during the school's 80th anniversary celebration."
             width="720"
             height="540"
             className="aspect-[4/3] w-full rounded-3xl object-cover shadow-2xl"
