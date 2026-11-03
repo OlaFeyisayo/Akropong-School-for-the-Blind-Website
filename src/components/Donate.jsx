@@ -49,7 +49,7 @@ export default function Donate() {
             <p className="mt-3 text-ink">
               To donate, contact us on{' '}
               <a href="tel:+233553511126" className="font-bold text-primary hover:underline">
-                0553511126
+                055 351 1126
               </a>.
             </p>
           </div>
