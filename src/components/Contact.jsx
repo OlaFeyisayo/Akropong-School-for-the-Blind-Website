@@ -8,9 +8,9 @@ import { Phone, Mail, MapPin, Send, CheckCircle2, AlertCircle } from 'lucide-rea
    etc.) with a new message pre-filled and addressed to SCHOOL_EMAIL; the visitor
    presses Send. No third-party service or server is involved.
 --------------------------------------------------------------------------- */
-const SCHOOL_EMAIL = 'temilademojisola00@gmail.com';
-const SCHOOL_PHONE_DISPLAY = '020 761 4751';
-const SCHOOL_PHONE_TEL = '+233207614751';
+const SCHOOL_EMAIL = 'akropongblind@yahoo.com';
+const SCHOOL_PHONE_DISPLAY = '055 351 1126';
+const SCHOOL_PHONE_TEL = '+233553511126';
 
 // Google Maps link for the school location.
 const MAP_QUERY = 'Akropong School for the Blind, Akropong-Akuapem, Eastern Region, Ghana';
