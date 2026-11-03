@@ -13,7 +13,7 @@ export default function Hero() {
     <section className="relative isolate overflow-hidden">
       <ParallaxBg src="/images/events-girls-procession.jpg" />
       <div
-        className="absolute inset-0 bg-gradient-to-br from-navy/90 via-navy/70 to-navy/45"
+        className="absolute inset-0 bg-gradient-to-br from-navy/55 via-navy/38 to-navy/20"
         aria-hidden="true"
       ></div>
 

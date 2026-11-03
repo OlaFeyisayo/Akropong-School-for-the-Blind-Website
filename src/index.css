@@ -106,12 +106,15 @@
   .chip {
     @apply inline-flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold;
   }
-  /* Frosted-glass panel (used over parallax photos) */
+  /* Very transparent glass panel (used over parallax photos).
+     A light navy tint + text-shadow keep white text legible while the
+     photo stays clearly visible through the panel. */
   .glass {
-    background-color: rgb(255 255 255 / 0.10);
-    border: 1px solid rgb(255 255 255 / 0.22);
-    backdrop-filter: blur(16px) saturate(130%);
-    -webkit-backdrop-filter: blur(16px) saturate(130%);
+    background-color: rgb(10 42 94 / 0.18);
+    border: 1px solid rgb(255 255 255 / 0.30);
+    backdrop-filter: blur(3px) saturate(115%);
+    -webkit-backdrop-filter: blur(3px) saturate(115%);
+    text-shadow: 0 1px 6px rgb(0 0 0 / 0.55);
   }
 }
 

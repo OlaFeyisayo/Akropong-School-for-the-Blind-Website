@@ -1,4 +1,4 @@
-import { HeartHandshake, BookOpen, Users, Landmark, Smartphone } from 'lucide-react';
+import { HeartHandshake, BookOpen, Users } from 'lucide-react';
 
 const WAYS = [
   {
@@ -50,28 +50,7 @@ export default function Donate() {
               To donate, contact us on{' '}
               <a href="tel:+233553511126" className="font-bold text-primary hover:underline">
                 0553511126
-              </a>
-              , or use the bank / mobile-money details below.
-            </p>
-
-            <dl className="mt-6 space-y-4 border-t border-border pt-5 text-sm">
-              <div className="flex min-w-0 items-start gap-3">
-                <Landmark className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div className="min-w-0">
-                  <dt className="font-semibold text-heading">Bank transfer</dt>
-                  <dd className="text-muted">Bank name, account name &amp; number — <span className="font-semibold text-ink">[ to be added ]</span></dd>
-                </div>
-              </div>
-              <div className="flex min-w-0 items-start gap-3">
-                <Smartphone className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
-                <div className="min-w-0">
-                  <dt className="font-semibold text-heading">Mobile Money</dt>
-                  <dd className="text-muted">MoMo number &amp; name — <span className="font-semibold text-ink">[ to be added ]</span></dd>
-                </div>
-              </div>
-            </dl>
-            <p className="mt-4 text-xs text-muted">
-              For a receipt or to discuss a larger gift, please contact us directly.
+              </a>.
             </p>
           </div>
         </div>
